@@ -27,13 +27,13 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public Customer findCustomerByName(String name)
+    public Customer findCustomerByName(String custname)
     {
-        Customer customer = custrepos.findByName(name);
+        Customer customer = custrepos.findByCustname(custname);
 
         if (customer == null)
         {
-            throw new EntityNotFoundException("Customer Not Found: " + name);
+            throw new EntityNotFoundException("Customer Not Found: " + custname);
         }
         return customer;
     }
@@ -58,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService
 
         for (Order o : customer.getOrders())
         {
-            newCustomer.getOrders().add(new Order(o.getOrdamount(), o.getAdvanceamount(), o.getCustomer(), o.getOrddescription()));
+            newCustomer.getOrders().add(new Order(o.getOrdamount(), o.getAdvanceamount(), newCustomer, o.getOrddescription()));
         }
 
         return custrepos.save(newCustomer);
