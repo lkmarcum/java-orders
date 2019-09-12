@@ -10,7 +10,7 @@ public class Order
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
+  //  @Column(nullable = false)
     private long ordnum;
 
     private double ordamount;
